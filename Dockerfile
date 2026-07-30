@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    QT_QPA_PLATFORM=offscreen \
+    QT_QPA_PLATFORM=xcb \
     QT_PLUGIN_PATH=/opt/ODAFileConverter/plugins \
     LD_LIBRARY_PATH=/opt/ODAFileConverter/lib:/opt/ODAFileConverter/bin \
     ODA_EXEC_PATH=/opt/ODAFileConverter/bin/ODAFileConverter
@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 \
     libfontconfig1 \
     libfreetype6 \
+    xvfb \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
@@ -46,4 +47,4 @@ RUN mkdir -p /app/uploads
 
 EXPOSE 8002
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8002"]
+CMD Xvfb :99 -screen 0 1024x768x24 &>/dev/null & sleep 1 && uvicorn main:app --host 0.0.0.0 --port 8002
