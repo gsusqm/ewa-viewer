@@ -32,7 +32,7 @@ def _setup_oda():
         # Linux / macOS: expect ODA_EXEC_PATH env var or default location
         oda_path = os.environ.get(
             "ODA_EXEC_PATH",
-            "/opt/ODAFileConverter/ODAFileConverter"
+            "/opt/ODAFileConverter/bin/ODAFileConverter"
         )
         if os.path.isfile(oda_path):
             ezdxf.options.set("odafc-addon", "unix_exec_path", oda_path)

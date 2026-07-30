@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
-    QT_QPA_PLATFORM=xcb \
+    QT_QPA_PLATFORM=offscreen \
     QT_PLUGIN_PATH=/opt/ODAFileConverter/plugins \
     LD_LIBRARY_PATH=/opt/ODAFileConverter/lib:/opt/ODAFileConverter/bin \
     ODA_EXEC_PATH=/opt/ODAFileConverter/bin/ODAFileConverter
@@ -10,7 +10,6 @@ ENV DEBIAN_FRONTEND=noninteractive \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
-    xvfb \
     curl \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
