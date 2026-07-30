@@ -33,7 +33,8 @@ RUN pip3 install --break-system-packages --no-cache-dir \
     fastapi \
     uvicorn[standard] \
     ezdxf \
-    python-multipart
+    python-multipart \
+    Pillow
 
 WORKDIR /app
 COPY backend/ /app/
