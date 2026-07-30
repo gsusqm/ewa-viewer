@@ -1,4 +1,4 @@
-const BASE = '' // Uses Vite proxy in dev mode
+const BASE = 'https://ewa-viewer.onrender.com'
 
 export async function uploadDrawing(file: File) {
   const form = new FormData()
