@@ -23,6 +23,28 @@ app.add_middleware(
 def health():
     return {"status": "ok", "python": sys.version}
 
+@app.get("/debug")
+def debug():
+    import ezdxf
+    from ezdxf.addons import odafc
+    info = {
+        "oda_exec_path_env": os.environ.get("ODA_EXEC_PATH", "NOT SET"),
+        "qt_platform": os.environ.get("QT_QPA_PLATFORM", "NOT SET"),
+        "oda_path_exists": os.path.isfile(os.environ.get("ODA_EXEC_PATH", "/opt/ODAFileConverter/bin/ODAFileConverter")),
+        "oda_dir_exists": os.path.isdir("/opt/ODAFileConverter"),
+        "oda_bin_exists": os.path.isdir("/opt/ODAFileConverter/bin"),
+        "oda_files": [],
+        "ezdxf_oda_option": ezdxf.options.get("odafc-addon", "unix_exec_path"),
+        "odafc_is_installed": odafc.is_installed(),
+    }
+    bin_dir = "/opt/ODAFileConverter/bin"
+    if os.path.isdir(bin_dir):
+        info["oda_files"] = os.listdir(bin_dir)
+    lib_dir = "/opt/ODAFileConverter/lib"
+    if os.path.isdir(lib_dir):
+        info["oda_lib_files"] = [f for f in os.listdir(lib_dir) if "Qt" in f or "icu" in f][:10]
+    return info
+
 
 @app.post("/api/upload")
 async def upload_file(file: UploadFile = File(...)):
