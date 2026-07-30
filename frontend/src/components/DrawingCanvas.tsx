@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useState } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import type { Entity, Extents, Layer, MeasurePoint, ToolMode } from '../types/drawing'
 
 interface Props {
@@ -145,9 +145,6 @@ export default function DrawingCanvas({
       if (!visibleLayers.has(layer.name)) continue
       const layerEntities = entities[layer.name]
       if (!layerEntities) continue
-      const layerInfo = layers.find(l => l.name === layer.name)
-      const layerRgb = layerInfo?.rgb || '#ffffff'
-
       for (const entity of layerEntities) {
         count++
         const isHovered = hovered === entity

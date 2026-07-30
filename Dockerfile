@@ -29,7 +29,7 @@ RUN curl -sL -o /tmp/ODA.AppImage \
     && /opt/ODAFileConverter/bin/ODAFileConverter --help > /dev/null 2>&1 || true
 
 # Install Python packages
-RUN pip3 install --no-cache-dir \
+RUN pip3 install --break-system-packages --no-cache-dir \
     fastapi \
     uvicorn[standard] \
     ezdxf \

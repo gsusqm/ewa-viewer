@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useCallback } from 'react'
 import type { DrawingData, Entity, Layer, MeasurePoint, ToolMode } from './types/drawing'
 import { uploadDrawing } from './api/drawingApi'
 import DrawingCanvas from './components/DrawingCanvas'
