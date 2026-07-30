@@ -6,7 +6,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 sys.path.insert(0, str(Path(__file__).parent))
-from dxf_processor import process_upload, get_drawing_data, get_svg_path, cleanup
+from dxf_processor import process_upload, get_drawing_data, get_svg_path, cleanup, _setup_oda
 
 app = FastAPI(title="EWA DWG Viewer API", version="0.1.0")
 
@@ -27,6 +27,7 @@ def health():
 def debug():
     import ezdxf
     from ezdxf.addons import odafc
+    _setup_oda()
     info = {
         "oda_exec_path_env": os.environ.get("ODA_EXEC_PATH", "NOT SET"),
         "qt_platform": os.environ.get("QT_QPA_PLATFORM", "NOT SET"),
