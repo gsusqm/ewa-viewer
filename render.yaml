@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ewa-viewer-backend
+    runtime: docker
+    repo: https://github.com/your-username/your-repo
+    plan: free
+    envVars:
+      - key: QT_QPA_PLATFORM
+        value: xcb
+      - key: ODA_EXEC_PATH
+        value: /opt/ODAFileConverter/bin/ODAFileConverter
+    dockerfilePath: ./Dockerfile

@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+*.pyo
+node_modules/
+dist/
+uploads/
+*.dwg
+*.dxf
+.env
+*.local
+.DS_Store
+Thumbs.db
